@@ -1,0 +1,22 @@
+<%- include("header") -%>
+
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+
+
+  <%  newListItems.forEach(function(todo){ %>
+
+      <div class="list">
+          <p>
+            <% let a = todo.name %>
+           <a href=<%=`http://localhost:3000/todo/${a}` %>> <%=todo.name%> </a>
+        </p>
+      </div>
+  <%  }) %>
+
+
+  </div>
