@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("URL", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://shiv_bhadaniya:Shiv6503@cluster0.brlke.mongodb.net/todolistDB?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 const Registration = new mongoose.Schema({
   email: String,
@@ -99,15 +99,8 @@ app.get("/todo", function(req, res) {
 
 });
 
-
-
-
-
-
-
-
-
 app.get("/todo/:customListName", function(req, res){
+  console.log(`app.get("/todo/:customListName")`);
   const customListName = _.capitalize(req.params.customListName);
 
   List.findOne({name: customListName}, function(err, foundList){
@@ -120,7 +113,7 @@ app.get("/todo/:customListName", function(req, res){
           items: defaultItems,
         });
         list.save();
-        res.redirect("/todo" + customListName);
+        res.redirect("/todo/" + customListName);
       } else {
         //Show an existing list
 
@@ -134,7 +127,7 @@ app.get("/todo/:customListName", function(req, res){
 });
 
 app.post("/todo", function(req, res){
-
+  console.log(`Enter app.post("/todo")`);
   const itemName = req.body.newItem;
   const listName = req.body.list;
 
@@ -178,7 +171,13 @@ app.post("/todo/delete", function(req, res){
 
 });
 
+app.post("/todoadd", function(req,res) {
 
+  let name = req.body.newItem;
+  console.log("name : ", name);
+  console.log(`/todoadd`);
+  res.redirect("/todo/" + name);
+})
 
 
 
