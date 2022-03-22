@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://shiv_bhadaniya:Shiv6503@cluster0.brlke.mongodb.net/todolistDB?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("", {useNewUrlParser: true});
 
 const Registration = new mongoose.Schema({
   email: String,
@@ -81,8 +81,11 @@ app.get("/signup", function (req, res) {
 app.get("/todo", function(req, res) {
 
   List.find({creator: currentUser._id}, function(err, foundList){
-
+    // console.log(`get - /todo : foundList -> ${foundList}`);
     if (foundList.length === 0) {
+
+      console.log(`get - /todo : inside if`);
+
       Item.insertMany(defaultItems, function(err){
         if (err) {
           console.log(err);
@@ -93,6 +96,8 @@ app.get("/todo", function(req, res) {
       // res.redirect("/todo");
       res.render("todoList", {listTitle: "List of todos", newListItems: foundList});
     } else {
+      console.log(`get - /todo : inside else`);
+
       res.render("todoList", {listTitle: "List of todos", newListItems: foundList});
     }
   });
@@ -241,6 +246,9 @@ try {
       alert("Something went wrong");
       res.redirect("/signin");
     }
+  } else {
+    alert("email dot register")
+    res.redirect("/signup");
   }
 
 } catch (error) {

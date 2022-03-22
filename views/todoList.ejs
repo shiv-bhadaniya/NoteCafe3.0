@@ -10,15 +10,17 @@
 
   <%  newListItems.forEach(function(todo){ %>
 
+    <% if(todo.items.length !== 0) { %>
       <div class="list">
           <p>
             <% let a = todo.name %>
            <a href=<%=`http://localhost:3000/todo/${a}` %>> <%=todo.name%> </a>
         </p>
       </div>
+      <%  } %>
   <%  }) %>
   <form class="item" action="/todoadd" method="post">
-    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+    <input type="text" name="newItem" placeholder="New List" autocomplete="off">
     <button class="item-btn"type="submit" name="list" value="<%= listTitle %>">+</button>
   </form>
   </div>
