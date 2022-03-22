@@ -58,8 +58,8 @@ const listSchema = {
 const List = mongoose.model("List", listSchema);
 
 app.get("/", function (req, res) {
-  alert("Click on noteCafe to Sign in");
-  res.sendFile(__dirname + "/HTML/index.html");
+  // alert("Click on noteCafe to Sign in");
+  res.sendFile(__dirname + "/HTML/signin.html");
 });
 
 app.get("/text", function(req, res) {
@@ -68,6 +68,10 @@ app.get("/text", function(req, res) {
 
 app.get("/chat", function(req, res) {
   res.sendFile(__dirname + "/HTML/chat.html");
+})
+
+app.get("/choice", function(req,res) {
+  res.sendFile(__dirname + "/HTML/choice.html");
 })
 
 app.get("/signin", function (req, res) {
@@ -196,6 +200,7 @@ app.post("/signup", function (req, res) {
     } else {
       if (foundUser && res.status(200)) {
         console.log("Already exsist");
+        alert("User Already exsist")
         res.redirect("/signin");
       } else {
         bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
@@ -214,7 +219,8 @@ app.post("/signup", function (req, res) {
               console.log(err.message);
             } else {
               console.log("New User Sucessfully Added");
-              res.redirect("/todo");
+              // res.redirect("/todo");
+             res.redirect("/choice");
             }
           });
         });
@@ -241,7 +247,9 @@ try {
     if(isPasswordCorrect) {
       currentUser = existingUser;
       console.log("currentUser : ", currentUser);
-      res.redirect("/todo");
+      // res.redirect("/todo");
+      res.redirect("/choice");
+
     } else {
       alert("Something went wrong");
       res.redirect("/signin");

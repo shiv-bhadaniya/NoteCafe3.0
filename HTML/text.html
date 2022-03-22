@@ -27,10 +27,11 @@
 
 	<!--Internal CSS start-->
 	<style>
+
 		h1 {
 			padding-top: 40px;
 			padding-bottom: 40px;
-			text-align: center;
+			/* text-align: center; */
 			color: #957dad;
 			font-family: 'Montserrat', sans-serif;
 		}
@@ -66,14 +67,39 @@
 			display: flex;
 			justify-content: center;
 		}
+
+		.navlink {
+			margin-top: 7px;
+		}
+
+		.navb {
+			margin-top: 7px;
+		}
+
 	</style>
 	<!--Internal CSS End-->
+	<link rel="stylesheet" href="/css/navStyle.css">
+
 </head>
 <!--Body start-->
 
 <body>
-	<section class="">
-		<h1 class="shadow-sm">TEXT EDITOR</h1>
+
+	<div class="container">
+		<nav class="nav navb">
+
+			<ul class="nav-list">
+				<li class="nav-item">
+					<a href="/todo"  target="_blank" class="nav-link navlink">Todo List</a>
+				</li>
+				<li class="nav-item">
+					<a href="/chat" target="_blank" class="nav-link navlink">Chat</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<section class="main-c">
 		<div class="flex-box">
 			<div class="row">
 				<div class="col">
