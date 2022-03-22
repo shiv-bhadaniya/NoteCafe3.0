@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://shiv_bhadaniya:Shiv6503@cluster0.brlke.mongodb.net/todolistDB?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("URL", {useNewUrlParser: true});
 
 const Registration = new mongoose.Schema({
   email: String,
